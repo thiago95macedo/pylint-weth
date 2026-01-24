@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- pylint:disable=deprecated-data-xml-node, duplicate-xml-record-id -->
-<casthi>
+<weth>
     <data>
         <record id="view_model_form80" model="ir.ui.view">
             <field name="name">view.model.form80</field>
@@ -11,4 +11,4 @@
             <field name="model">test.model</field>
         </record>
     </data>
-</casthi>
+</weth>

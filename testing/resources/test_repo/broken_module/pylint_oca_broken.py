@@ -5,10 +5,10 @@ import openerp
 from openerp import api
 from openerp.api import one, multi
 
-from casthi.exceptions import Warning as UserError  # pylint: disable=W0622
-from casthi.exceptions import Warning as OtherName  # pylint: disable=W0404
-from casthi.exceptions import Warning  # pylint: disable=W0404,W0622
-from casthi.exceptions import (AccessError as AE,  # pylint: disable=W0404
+from weth.exceptions import Warning as UserError  # pylint: disable=W0622
+from weth.exceptions import Warning as OtherName  # pylint: disable=W0404
+from weth.exceptions import Warning  # pylint: disable=W0404,W0622
+from weth.exceptions import (AccessError as AE,  # pylint: disable=W0404
                              ValidationError,
                              Warning as UserError2)
 

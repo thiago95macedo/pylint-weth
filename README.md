@@ -1,22 +1,22 @@
-# pylint-casthi
+# pylint-weth
 
-Plugin Pylint especializado para análise de código de módulos CasThi.
+Plugin Pylint especializado para análise de código de módulos WETH.
 
 ## Descrição
 
-O `pylint-casthi` é um plugin do Pylint que fornece verificações especializadas para desenvolvimento de módulos CasThi, garantindo qualidade de código, segurança e conformidade com as melhores práticas.
+O `pylint-weth` é um plugin do Pylint que fornece verificações especializadas para desenvolvimento de módulos WETH, garantindo qualidade de código, segurança e conformidade com as melhores práticas.
 
 ## Instalação
 
 ```bash
-pip install pylint-casthi
+pip install pylint-weth
 ```
 
 ## Uso
 
 ### Básico
 ```bash
-pylint --load-plugins=pylint_casthi src/
+pylint --load-plugins=pylint_weth src/
 ```
 
 ### Com arquivo de configuração
@@ -24,9 +24,9 @@ pylint --load-plugins=pylint_casthi src/
 pylint --rcfile=.pylintrc src/
 ```
 
-### Apenas verificações CasThi
+### Apenas verificações WETH
 ```bash
-pylint --load-plugins=pylint_casthi -d all -e casthilint src/
+pylint --load-plugins=pylint_weth -d all -e wethlint src/
 ```
 
 ## Principais Verificações
@@ -64,24 +64,24 @@ pylint --load-plugins=pylint_casthi -d all -e casthilint src/
 ### Arquivo `.pylintrc`
 ```ini
 [MASTER]
-load-plugins=pylint_casthi
+load-plugins=pylint_weth
 
 [MESSAGES CONTROL]
 disable=all
-enable=casthilint,pointless-statement,trailing-newlines
+enable=wethlint,pointless-statement,trailing-newlines
 
-[casthilint]
-manifest-required-authors=CasThi
+[wethlint]
+manifest-required-authors=WETH
 license-allowed=LGPL-3,AGPL-3
 ```
 
 ### Pre-commit Hook
 ```yaml
 repos:
-  - repo: https://github.com/thiago95macedo/pylint-casthi
+  - repo: https://github.com/thiago95macedo/pylint-weth
     rev: main
     hooks:
-      - id: pylint_casthi
+      - id: pylint_weth
 ```
 
 ## Exemplos de Problemas Detectados
@@ -123,7 +123,7 @@ message = _("User created successfully")
 
 ### GitHub Actions
 ```yaml
-name: Lint CasThi Modules
+name: Lint WETH Modules
 on: [push, pull_request]
 jobs:
   lint:
@@ -136,18 +136,18 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          pip install pylint-casthi
+          pip install pylint-weth
       - name: Run pylint
         run: |
-          pylint --load-plugins=pylint_casthi src/
+          pylint --load-plugins=pylint_weth src/
 ```
 
 ## Desenvolvimento
 
 ### Instalação para desenvolvimento
 ```bash
-git clone https://github.com/thiago95macedo/pylint-casthi.git
-cd pylint-casthi
+git clone https://github.com/thiago95macedo/pylint-weth.git
+cd pylint-weth
 pip install -e .
 ```
 
@@ -158,7 +158,7 @@ python -m pytest tests/
 
 ### Executar linting
 ```bash
-pylint --load-plugins=pylint_casthi src/
+pylint --load-plugins=pylint_weth src/
 ```
 
 ## Contribuição
@@ -175,12 +175,12 @@ Este projeto está licenciado sob a Licença AGPL-3.0 - veja o arquivo [LICENSE]
 
 ## Suporte
 
-- **Issues**: [GitHub Issues](https://github.com/thiago95macedo/pylint-casthi/issues)
-- **Documentação**: [Wiki do projeto](https://github.com/thiago95macedo/pylint-casthi/wiki)
+- **Issues**: [GitHub Issues](https://github.com/thiago95macedo/pylint-weth/issues)
+- **Documentação**: [Wiki do projeto](https://github.com/thiago95macedo/pylint-weth/wiki)
 
-## CasThi
+## WETH
 
-Este plugin é desenvolvido especificamente para o projeto **CasThi**, uma personalização do Odoo 16 focada no mercado brasileiro.
+Este plugin é desenvolvido especificamente para o projeto **WETH**, uma personalização do Odoo 16 focada no mercado brasileiro.
 
-- **Website**: https://www.casthi.com.br
-- **Documentação**: https://docs.casthi.com.br
+- **Website**: https://www.weth.com.br
+- **Documentação**: https://docs.weth.com.br

@@ -14,4 +14,4 @@ repos:
     rev: v3.0.1
     hooks:
       - id: pylint
-        args: [--load-plugins=pylint_casthi]
+        args: [--load-plugins=pylint_weth]

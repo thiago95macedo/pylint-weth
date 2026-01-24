@@ -1,52 +1,57 @@
-# Prompt para IA - Uso do pylint-casthi no Projeto CasThi
+# Prompt para IA - Uso do pylint-weth no Projeto WETH
 
 ## 🎯 CONTEXTO DO PROJETO
 
-**CasThi** é um ERP brasileiro personalizado baseado no Odoo 16.0, desenvolvido com foco em:
+**WETH** é um ERP brasileiro personalizado baseado no Odoo 16.0, desenvolvido com foco em:
 - Localização brasileira completa
-- Identidade visual CasThi (#05285B)
+- Identidade visual WETH (#05285B)
 - Traduções nativas em português brasileiro
 - Padrões de desenvolvimento específicos
 
-## 🔧 CONFIGURAÇÃO DO PYLINT-CASTHI
+## 🧭 USO COM WINDSURF / CASCADE
+
+- As regras de projeto para o Cascade (Windsurf) ficam em `/.windsurf/rules/weth.md`.
+- Ao iniciar uma tarefa, siga essas regras (principalmente: processo de decisão com o Thiago e **não commitar sem aprovação**).
+
+## 🔧 CONFIGURAÇÃO DO PYLINT-WETH
 
 ### Instalação
 ```bash
-# Instalar o plugin pylint-casthi
-pip install pylint-casthi
+# Instalar o plugin pylint-weth
+pip install pylint-weth
 
 # Ou instalar em modo desenvolvimento
-pip install -e /caminho/para/pylint-casthi
+pip install -e /caminho/para/pylint-weth
 ```
 
 ### Configuração (.pylintrc)
-O arquivo `.pylintrc` já está configurado na raiz do projeto CasThi com:
-- Plugin `pylint_casthi` carregado
-- Verificações CasThi habilitadas (`casthilint`)
+O arquivo `.pylintrc` já está configurado na raiz do projeto WETH com:
+- Plugin `pylint_weth` carregado
+- Verificações WETH habilitadas (`wethlint`)
 - Verificações desnecessárias desabilitadas
-- Padrões otimizados para desenvolvimento CasThi
+- Padrões otimizados para desenvolvimento WETH
 
-## 📋 COMO USAR O PYLINT-CASTHI
+## 📋 COMO USAR O PYLINT-WETH
 
 ### 1. Uso Básico
 ```bash
 # Analisar módulo específico
-pylint addons/casthi_module_name/
+pylint addons/module_name/
 
-# Analisar todos os módulos CasThi
+# Analisar todos os módulos WETH
 pylint addons/
 
-# Apenas verificações CasThi (recomendado)
-pylint --disable=all --enable=casthilint addons/casthi_module_name/
+# Apenas verificações WETH (recomendado)
+pylint --disable=all --enable=wethlint addons/module_name/
 ```
 
 ### 2. Uso com Arquivo de Configuração
 ```bash
 # Usar configuração do .pylintrc automaticamente
-pylint addons/casthi_module_name/
+pylint addons/module_name/
 
 # Forçar uso de configuração específica
-pylint --rcfile=.pylintrc addons/casthi_module_name/
+pylint --rcfile=.pylintrc addons/module_name/
 ```
 
 ### 3. Integração com IDE
@@ -55,9 +60,9 @@ pylint --rcfile=.pylintrc addons/casthi_module_name/
 {
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
-        "--load-plugins=pylint_casthi",
+        "--load-plugins=pylint_weth",
         "--disable=all",
-        "--enable=casthilint"
+        "--enable=wethlint"
     ]
 }
 ```
@@ -71,7 +76,7 @@ pylint --rcfile=.pylintrc addons/casthi_module_name/
 
 ### 📋 Manifest e Estrutura
 - **Manifest válido**: Verifica estrutura do `__manifest__.py`
-- **Versão correta**: Valida formato de versão (16.0.x.y.z)
+- **Versão correta**: Valida formato de versão (2026.0.x.y.z)
 - **Dependências**: Verifica dependências declaradas
 - **Licença**: Valida licença especificada
 
@@ -81,7 +86,7 @@ pylint --rcfile=.pylintrc addons/casthi_module_name/
 - **Formatação**: Valida formatação de strings de tradução
 - **Lazy loading**: Verifica uso de lazy loading em traduções
 
-### 🏗️ Arquitetura CasThi
+### 🏗️ Arquitetura WETH
 - **Métodos deprecated**: Detecta uso de APIs antigas
 - **Herança**: Valida herança correta de modelos
 - **Campos computed**: Verifica métodos compute adequados
@@ -100,7 +105,7 @@ query = f"SELECT * FROM table WHERE id = {user_id}"
 query = "SELECT * FROM table WHERE id = %s"
 self.env.cr.execute(query, (user_id,))
 
-# ✅ MELHOR: Usar ORM do CasThi
+# ✅ MELHOR: Usar ORM do WETH
 records = self.env['model.name'].search([('id', '=', user_id)])
 ```
 
@@ -111,9 +116,6 @@ message = "Erro ao processar dados"
 
 # ✅ SOLUÇÃO: Usar método de tradução
 message = self.env._("Erro ao processar dados")
-
-# ✅ MELHOR: Com lazy loading
-message = _("Erro ao processar dados")
 ```
 
 #### Métodos Deprecated
@@ -128,7 +130,7 @@ def _compute_display_name(self):
         record.display_name = record.name
 ```
 
-### 2. Padrões de Código CasThi
+### 2. Padrões de Código WETH
 
 #### Estrutura de Modelo
 ```python
@@ -136,11 +138,11 @@ def _compute_display_name(self):
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-class CasthiModel(models.Model):
+class WethModel(models.Model):
     """Modelo para [descrição em português]."""
     
-    _name = 'casthi.model'
-    _description = 'Modelo CasThi'
+    _name = 'weth.model'
+    _description = 'Modelo WETH'
     _order = 'create_date desc'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     
@@ -164,9 +166,9 @@ class CasthiModel(models.Model):
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Form View -->
-    <record id="view_casthi_model_form" model="ir.ui.view">
-        <field name="name">casthi.model.form</field>
-        <field name="model">casthi.model</field>
+    <record id="view_weth_model_form" model="ir.ui.view">
+        <field name="name">weth.model.form</field>
+        <field name="model">weth.model</field>
         <field name="arch" type="xml">
             <form string="[Título em PT-BR]">
                 <header>
@@ -197,21 +199,18 @@ class CasthiModel(models.Model):
 ```yaml
 # .pre-commit-config.yaml
 repos:
-  - repo: local
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.0.1
     hooks:
-      - id: pylint-casthi
-        name: pylint-casthi
-        entry: pylint --load-plugins=pylint_casthi --disable=all --enable=casthilint
-        language: system
-        files: \.py$
-        args: [--rcfile=.pylintrc]
+      - id: pylint
+        args: [--load-plugins=pylint_weth]
 ```
 
 ### 4. CI/CD Integration
 
 ```yaml
 # .github/workflows/lint.yml
-name: Lint CasThi Code
+name: Lint WETH Code
 on: [push, pull_request]
 jobs:
   lint:
@@ -224,10 +223,10 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: |
-          pip install pylint-casthi
-      - name: Run pylint-casthi
+          pip install pylint-weth
+      - name: Run pylint-weth
         run: |
-          pylint --load-plugins=pylint_casthi --disable=all --enable=casthilint addons/
+          pylint --load-plugins=pylint_weth --disable=all --enable=wethlint addons/
 ```
 
 ## 📊 INTERPRETAÇÃO DE RESULTADOS
@@ -240,22 +239,21 @@ jobs:
 
 ### Exemplos de Saída
 ```
-addons/casthi_module/models/model.py:45: [E8103(sql-injection), Model.method] SQL injection risk. Use parameters if you can.
-addons/casthi_module/models/model.py:67: [W8161(prefer-env-translation), Model.method] Better using self.env._ More info at https://github.com/casthi/casthi/pull/174844
-addons/casthi_module/models/model.py:89: [C8108(method-compute), Model] Name of compute method should start with "_compute_"
+addons/weth_module/models/model.py:45: [E8103(sql-injection), Model.method] SQL injection risk. Use parameters if you can.
+addons/weth_module/models/model.py:67: [W8161(prefer-env-translation), Model.method] Better using self.env._ More info at https://github.com/weth/weth/pull/174844
+addons/weth_module/models/model.py:89: [C8108(method-compute), Model] Name of compute method should start with "_compute_"
 ```
 
 ## 🎯 CHECKLIST DE QUALIDADE
 
 ### ✅ Antes de Commitar
-- [ ] Executar `pylint --disable=all --enable=casthilint addons/modulo/`
+- [ ] Executar `pylint --disable=all --enable=wethlint addons/modulo/`
 - [ ] Corrigir todos os erros (E) e warnings (W)
 - [ ] Verificar traduções em português
 - [ ] Validar estrutura do manifest
 - [ ] Testar funcionalidades básicas
 
-### ✅ Padrões CasThi
-- [ ] Prefixo `casthi_` em módulos customizados
+### ✅ Padrões WETH
 - [ ] Strings em português brasileiro
 - [ ] Documentação em português
 - [ ] Uso correto de `self.env._()` para traduções
@@ -288,15 +286,15 @@ message = self.env._("Texto")
 # ❌ Problema: Manifest incompleto
 {
     'name': 'Módulo',
-    'version': '16.0.1.0.0',
+    'version': '2026.0.1.0.0',
 }
 
 # ✅ Solução: Manifest completo
 {
-    'name': 'CasThi - Módulo',
-    'version': '16.0.1.0.0',
-    'author': 'CasThi',
-    'website': 'https://www.casthi.com.br',
+    'name': 'WETH - Módulo',
+    'version': '2026.0.1.0.0',
+    'author': 'WETH',
+    'website': 'https://www.weth.com.br',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': ['views/views.xml'],
@@ -307,10 +305,10 @@ message = self.env._("Texto")
 ## 📈 MELHORIAS CONTÍNUAS
 
 ### 1. Monitoramento de Qualidade
-- Executar pylint-casthi regularmente
+- Executar pylint-weth regularmente
 - Acompanhar métricas de qualidade
 - Identificar padrões de problemas
-- Treinar equipe nos padrões CasThi
+- Treinar equipe nos padrões WETH
 
 ### 2. Customizações Específicas
 - Adicionar verificações específicas do negócio
@@ -328,13 +326,13 @@ message = self.env._("Texto")
 
 ## 🎯 RESUMO PARA IA
 
-**SEMPRE que trabalhar com código CasThi:**
+**SEMPRE que trabalhar com código WETH:**
 
-1. **Execute pylint-casthi** antes de sugerir mudanças
+1. **Execute pylint-weth** antes de sugerir mudanças
 2. **Corrija problemas de segurança** (SQL injection, validações)
 3. **Use traduções corretas** (`self.env._()` em português)
-4. **Siga padrões CasThi** (prefixos, estrutura, documentação)
-5. **Valide manifest** (versão 16.0.x.y.z, campos obrigatórios)
+4. **Siga padrões WETH** (prefixos, estrutura, documentação)
+5. **Valide manifest** (versão 2026.0.x.y.z, campos obrigatórios)
 6. **Mantenha qualidade** (documentação, testes, validações)
 
-**O pylint-casthi é sua ferramenta principal para garantir qualidade e segurança no código CasThi!**
+**O pylint-weth é sua ferramenta principal para garantir qualidade e segurança no código WETH!**

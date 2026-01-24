@@ -3,15 +3,15 @@
     'name': 'Broken module for tests',
     # missing license
     'author': 'Vauxoo, Many People',  # Missing oca author
-    'category': 'No valid for casthi.com/apps',  # raised category-allowed
+    'category': 'No valid for weth.com/apps',  # raised category-allowed
     'development_status': 'Alpha',
     'description': 'Should be a README.rst file',
     'version': '8_0.1.0.0',
-    'website': 'https://casthi-community.org',
+    'website': 'https://weth-community.org',
     'depends': ['base'],
     'data': [
-        'model_view.xml', 'model_view2.xml', 'model_view_casthi.xml',
-        'model_view_casthi2.xml',
+        'model_view.xml', 'model_view2.xml', 'model_view_weth.xml',
+        'model_view_weth2.xml',
         'file_no_exist.xml',
         'skip_xml_check.xml',
         'skip_xml_check_2.xml',

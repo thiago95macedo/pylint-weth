@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<casthi>
+<weth>
     <data>
         <!-- duplicate record id but from demo -->
         <record id="view_model_form10" model="ir.ui.view">
@@ -13,4 +13,4 @@
         </record>
 
     </data>
-</casthi>
+</weth>

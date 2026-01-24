@@ -1,5 +1,5 @@
-from casthi import SUPERUSER_ID, api
-from casthi.addons.test_module import random_stuff
+from weth import SUPERUSER_ID, api
+from weth.addons.test_module import random_stuff
 
 
 def method(cr, unused):

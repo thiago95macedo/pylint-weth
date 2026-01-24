@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<casthi>
+<weth>
     <template id="my_template1" inherit_id="module.template">
         <xpath expr="//div[@role='search']" position="replace">
             <form/>
@@ -25,4 +25,4 @@
     <template id="my_template5" inherit_id="module.template">
         <t t-set="address"/>
     </template>
-</casthi>
+</weth>

@@ -1,4 +1,4 @@
-from casthi import models
+from weth import models
 
 # astroid is not set as an external Python dependency in the manifest,
 # so all of the following imports should fail

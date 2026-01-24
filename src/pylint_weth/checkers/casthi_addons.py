@@ -111,11 +111,11 @@ from pylint.checkers import BaseChecker, utils
 from pylint.lint import PyLinter
 
 from .. import misc
-from .casthi_base_checker import CasThiBaseChecker
+from .weth_base_checker import WETHBaseChecker
 
 CHECK_DESCRIPTION = (
     "You can review guidelines here: "
-    "https://github.com/OCA/casthi-community.org/blob/master/website/"
+    "https://github.com/OCA/weth-community.org/blob/master/website/"
     "Contribution/CONTRIBUTING.rst"
 )
 
@@ -150,14 +150,14 @@ CASTHI_MSGS = {
     "C8112": ("Missing ./README.rst file. Template here: %s", "missing-readme", CHECK_DESCRIPTION),
     "C8113": (
         "No wizard class for model directory. See the complete structure "
-        "https://github.com/OCA/casthi-community.org/blob/master/website/Contribution/CONTRIBUTING.rst#complete-structure",
+        "https://github.com/OCA/weth-community.org/blob/master/website/Contribution/CONTRIBUTING.rst#complete-structure",
         "no-wizard-in-models",
         CHECK_DESCRIPTION,
     ),
     "C8114": ('Category "%s" not allowed in %smanifest file.', "category-allowed", CHECK_DESCRIPTION),
     "C8115": (
         "Missing %s %sfile",
-        "missing-casthi-file",
+        "missing-weth-file",
         CHECK_DESCRIPTION,
     ),
     "E8101": (
@@ -167,13 +167,13 @@ CASTHI_MSGS = {
     ),
     "E8102": (
         "Use of cr.commit() directly - More info "
-        "https://github.com/OCA/casthi-community.org/blob/master/website/Contribution/CONTRIBUTING.rst#never-commit-the-transaction",  # noqa: B950
+        "https://github.com/OCA/weth-community.org/blob/master/website/Contribution/CONTRIBUTING.rst#never-commit-the-transaction",  # noqa: B950
         "invalid-commit",
         CHECK_DESCRIPTION,
     ),
     "E8103": (
         "SQL injection risk. Use parameters if you can. - More info "
-        "https://github.com/OCA/casthi-community.org/blob/master/website/Contribution/CONTRIBUTING.rst#no-sql-injection",
+        "https://github.com/OCA/weth-community.org/blob/master/website/Contribution/CONTRIBUTING.rst#no-sql-injection",
         "sql-injection",
         CHECK_DESCRIPTION,
     ),
@@ -200,27 +200,27 @@ CASTHI_MSGS = {
         "Update your manifest version, otherwise the migration script won't run",
     ),
     "E8146": (
-        "'name_get' is deprecated. Use '_compute_display_name' instead. More info at https://github.com/casthi/casthi/pull/122085.",
+        "'name_get' is deprecated. Use '_compute_display_name' instead. More info at https://github.com/weth/weth/pull/122085.",
         "deprecated-name-get",
         CHECK_DESCRIPTION,
     ),
     "E8147": (
         'Use string method name `"%s"` to preserve inheritability. '
-        "More info at https://github.com/OCA/casthi-pre-commit-hooks/issues/126",
+        "More info at https://github.com/OCA/weth-pre-commit-hooks/issues/126",
         "inheritable-method-string",
         CHECK_DESCRIPTION,
     ),
     "E8148": (
         "Use `%s=lambda self: self.%s()` to preserve inheritability. "
-        "More info at https://github.com/OCA/casthi-pre-commit-hooks/issues/126",
+        "More info at https://github.com/OCA/weth-pre-commit-hooks/issues/126",
         "inheritable-method-lambda",
         CHECK_DESCRIPTION,
     ),
     "F8101": ('File "%s": "%s" not found.', "resource-not-exist", CHECK_DESCRIPTION),
     "R8101": (
-        "`casthi.exceptions.Warning` is a deprecated alias to `casthi.exceptions.UserError` "
-        "use `from casthi.exceptions import UserError`",
-        "casthi-exception-warning",
+        "`weth.exceptions.Warning` is a deprecated alias to `weth.exceptions.UserError` "
+        "use `from weth.exceptions import UserError`",
+        "weth-exception-warning",
         CHECK_DESCRIPTION,
     ),
     "R8180": (
@@ -281,23 +281,23 @@ CASTHI_MSGS = {
         CHECK_DESCRIPTION,
     ),
     "W8150": (
-        'Same CasThi module absolute import. You should use relative import with "." instead of "casthi.addons.%s"',
-        "casthi-addons-relative-import",
+        'Same WETH module absolute import. You should use relative import with "." instead of "weth.addons.%s"',
+        "weth-addons-relative-import",
         CHECK_DESCRIPTION,
     ),
     "W8155": (
-        "Used builtin function `itertools.groupby`. Prefer `casthi.tools.groupby` instead. "
-        "More info about https://github.com/casthi/casthi/issues/105376",
+        "Used builtin function `itertools.groupby`. Prefer `weth.tools.groupby` instead. "
+        "More info about https://github.com/weth/weth/issues/105376",
         "bad-builtin-groupby",
         CHECK_DESCRIPTION,
     ),
     "W8160": (
-        "%s has been deprecated by CasThi. Please look for alternatives.",
-        "deprecated-casthi-model-method",
+        "%s has been deprecated by WETH. Please look for alternatives.",
+        "deprecated-weth-model-method",
         CHECK_DESCRIPTION,
     ),
     "W8161": (
-        "Better using self.env._ More info at https://github.com/casthi/casthi/pull/174844",
+        "Better using self.env._ More info at https://github.com/weth/weth/pull/174844",
         "prefer-env-translation",
         CHECK_DESCRIPTION,
     ),
@@ -321,7 +321,7 @@ CASTHI_MSGS = {
 DFTL_MANIFEST_REQUIRED_KEYS = ["license"]
 DFTL_MANIFEST_REQUIRED_KEYS_APP = ["currency", "images", "license", "support"]
 DFTL_CASTHI_REQUIRED_FILES_APP = [os.path.join("static", "description", "index.html")]
-DFTL_MANIFEST_REQUIRED_AUTHORS = ["CasThi Community Association (OCA)"]
+DFTL_MANIFEST_REQUIRED_AUTHORS = ["WETH Community Association (OCA)"]
 DFTL_MANIFEST_DEPRECATED_KEYS = ["description"]
 DFTL_LICENSE_ALLOWED = [
     "AGPL-3",
@@ -347,7 +347,7 @@ DFTL_ATTRIBUTE_DEPRECATED = [
 ]
 DFTL_CATEGORY_ALLOWED = []
 DFTL_CATEGORY_ALLOWED_APP = [
-    # Based on https://apps.casthi.com/apps
+    # Based on https://apps.weth.com/apps
     "Accounting",
     "Discuss",
     "Document Management",
@@ -387,7 +387,7 @@ DFTL_CURSOR_EXPR = [
     "self.env.cr",
 ]
 DFTL_CASTHI_EXCEPTIONS = [
-    # Extracted from casthi/exceptions.py of 16.0 and master
+    # Extracted from weth/exceptions.py of 16.0 and master
     "AccessDenied",
     "AccessError",
     "CacheMiss",
@@ -414,7 +414,7 @@ FIELDS_METHOD = {
     "Selection": 1,
 }
 DFTL_DEPRECATED_FIELD_PARAMETERS = [
-    # From casthi/casthi 10.0: casthi/casthi/fields.py:29
+    # From weth/weth 10.0: weth/weth/fields.py:29
     "digits_compute:digits",
     "select:index",
 ]
@@ -422,7 +422,7 @@ DFTL_EXTERNAL_REQUEST_TIMEOUT_METHODS = [
     "ftplib.FTP",
     "http.client.HTTPConnection",
     "http.client.HTTPSConnection",
-    "casthi.addons.iap.models.iap.jsonrpc",
+    "weth.addons.iap.models.iap.jsonrpc",
     "requests.delete",
     "requests.get",
     "requests.head",
@@ -457,9 +457,9 @@ PRINTF_PATTERN = re.compile(
 )
 
 
-class CasThiAddons(CasThiBaseChecker, BaseChecker):
+class WETHAddons(WETHBaseChecker, BaseChecker):
     _from_imports = None
-    name = "casthilint"
+    name = "wethlint"
     msgs = CASTHI_MSGS
     options = (
         (
@@ -568,8 +568,8 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                 "metavar": "<string>",
                 "default": misc.DFTL_MANIFEST_VERSION_FORMAT,
                 "help": "Regex to check version format in manifest file. "
-                'Use "{valid_casthi_versions}" to check the parameter of '
-                '"valid_casthi_versions"',
+                'Use "{valid_weth_versions}" to check the parameter of '
+                '"valid_weth_versions"',
             },
         ),
         (
@@ -600,22 +600,22 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             },
         ),
         (
-            "casthi-exceptions",
+            "weth-exceptions",
             {
                 "type": "csv",
                 "metavar": "<comma separated values>",
                 "default": DFTL_CASTHI_EXCEPTIONS,
-                "help": "List of casthi exceptions separated by a comma.",
+                "help": "List of weth exceptions separated by a comma.",
             },
         ),
         (
-            "casthi-required-files",
+            "weth-required-files",
             {
                 "type": "csv",
                 "metavar": "<comma separated values>",
                 "default": DFTL_CASTHI_REQUIRED_FILES_APP,
                 "help": (
-                    "List of mandatory relative paths (comma-separated) expected inside CasThi module. "
+                    "List of mandatory relative paths (comma-separated) expected inside WETH module. "
                     "Example: static/description/index.html"
                 ),
             },
@@ -630,16 +630,16 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             },
         ),
         (
-            "valid-casthi-versions",
+            "valid-weth-versions",
             {
                 "type": "csv",
                 "metavar": "<comma separated values>",
                 "default": misc.DFTL_VALID_CASTHI_VERSIONS,
-                "help": "List of valid casthi versions separated by a comma.",
+                "help": "List of valid weth versions separated by a comma.",
             },
         ),
         (
-            "deprecated-casthi-model-methods",
+            "deprecated-weth-model-methods",
             {
                 "type": "string",
                 "metavar": "python_expression",
@@ -667,25 +667,25 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         ),
     )
 
-    checks_maxmin_casthi_version = {
-        # Verificações específicas para CasThi atual
-        "no-raise-unlink": {"casthi_minversion": "16.0"},
-        "prefer-env-translation": {"casthi_minversion": "16.0"},
-        "deprecated-name-get": {"casthi_minversion": "16.0"},
+    checks_maxmin_weth_version = {
+        # Verificações específicas para WETH atual
+        "no-raise-unlink": {"weth_minversion": "2026.0"},
+        "prefer-env-translation": {"weth_minversion": "2026.0"},
+        "deprecated-name-get": {"weth_minversion": "2026.0"},
     }
 
     def __init__(self, linter: PyLinter):
         super().__init__(linter)
-        self._deprecated_casthi_methods = set()
+        self._deprecated_weth_methods = set()
         self.deprecated_field_parameters = {}
-        self._casthi_inherit_items = defaultdict(set)
+        self._weth_inherit_items = defaultdict(set)
 
     def close(self):
         """Final process get all cached values and add messages"""
-        for (_manifest_path, casthi_class_inherit), inh_nodes in self._casthi_inherit_items.items():
+        for (_manifest_path, weth_class_inherit), inh_nodes in self._weth_inherit_items.items():
             # Skip _inherit='other.model' _name='model.name' because is valid
             inh_nodes = {
-                inh_node for inh_node in inh_nodes if not getattr(inh_node.parent, "casthi_attribute_name", None)
+                inh_node for inh_node in inh_nodes if not getattr(inh_node.parent, "weth_attribute_name", None)
             }
             if len(inh_nodes) <= 1:
                 continue
@@ -697,9 +697,9 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                 relpath = os.path.relpath(node.root().file, os.getcwd())
                 path_nodes.append("%s:%d:%d" % (relpath, node.lineno, node.col_offset))
             self.add_message(
-                "consider-merging-classes-inherited", node=first_node, args=(casthi_class_inherit, ", ".join(path_nodes))
+                "consider-merging-classes-inherited", node=first_node, args=(weth_class_inherit, ", ".join(path_nodes))
             )
-        self._casthi_inherit_items = defaultdict(set)
+        self._weth_inherit_items = defaultdict(set)
 
     def visit_module(self, node):
         """Initizalize the cache to save the original library name
@@ -714,35 +714,35 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         """Clear variables"""
         self._from_imports = {}
 
-    def _get_max_valid_casthi_versions(self):
-        casthi_versions = [misc.version_parse(casthi_version) for casthi_version in self.linter.config.valid_casthi_versions]
-        if () in casthi_versions:
-            # Empty value means casthi_version value could not be adapted
+    def _get_max_valid_weth_versions(self):
+        weth_versions = [misc.version_parse(weth_version) for weth_version in self.linter.config.valid_weth_versions]
+        if () in weth_versions:
+            # Empty value means weth_version value could not be adapted
             return
-        max_valid_version = max(casthi_versions)
+        max_valid_version = max(weth_versions)
         return max_valid_version
 
     def open(self):
         super().open()
         self.deprecated_field_parameters = self.colon_list_to_dict(self.linter.config.deprecated_field_parameters)
 
-        if self.linter.config.deprecated_casthi_model_methods:
-            deprecated_model_methods = ast.literal_eval(self.linter.config.deprecated_casthi_model_methods)
+        if self.linter.config.deprecated_weth_model_methods:
+            deprecated_model_methods = ast.literal_eval(self.linter.config.deprecated_weth_model_methods)
         else:
             deprecated_model_methods = DFTL_DEPRECATED_CASTHI_MODEL_METHODS
 
-        max_valid_version = self._get_max_valid_casthi_versions()
+        max_valid_version = self._get_max_valid_weth_versions()
         if max_valid_version is None:
             warnings.warn(
-                f"Invalid manifest versions format {self.linter.config.valid_casthi_versions}. "
-                "It was not possible to supress checks based on particular casthi version",
+                f"Invalid manifest versions format {self.linter.config.valid_weth_versions}. "
+                "It was not possible to supress checks based on particular weth version",
                 UserWarning,
                 stacklevel=2,
             )
             return
         for version, checks in deprecated_model_methods.items():
             if misc.version_parse(version) <= max_valid_version:
-                self._deprecated_casthi_methods.update(checks)
+                self._deprecated_weth_methods.update(checks)
 
     def colon_list_to_dict(self, colon_list):
         """Converts a colon list to a dictionary.
@@ -854,7 +854,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         return False
 
     def _check_sql_injection_risky(self, node):
-        # Inspired from OCA/pylint-casthi project
+        # Inspired from OCA/pylint-weth project
         # Thanks @moylop260 (Moises Lopez) & @nilshamerlinck (Nils Hamerlinck)
         current_file_bname = os.path.basename(self.linter.current_file)
         if not (
@@ -1025,8 +1025,8 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                             if isinstance(argument.value, nodes.Name)
                             else None
                         )
-                        if method_name and self.class_casthi_models:
-                            self.casthi_computes.add(method_name)
+                        if method_name and self.class_weth_models:
+                            self.weth_computes.add(method_name)
                     if (
                         self.linter.is_message_enabled("inheritable-method-string", node.lineno)
                         and argument.arg in ["compute", "search", "inverse"]
@@ -1078,7 +1078,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             and node.args
             # support self.with_context(clean_context(self.env.context))
             # does not support ctx = clean_context(self.env.context);self.with_context(ctx)
-            and self._static_func_infer_name(node.args[0]) != "casthi.tools.clean_context"
+            and self._static_func_infer_name(node.args[0]) != "weth.tools.clean_context"
         ):
             # with_context(**ctx) is considered a keywords
             # So, if only one args is received it is overridden
@@ -1129,8 +1129,8 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                 if as_string:
                     keyword = keyword and "%s=" % keyword
                     tl_method = "_"
-                    max_valid_casthi_version = self._get_max_valid_casthi_versions()
-                    if max_valid_casthi_version is None or max_valid_casthi_version >= (8, 0):
+                    max_valid_weth_version = self._get_max_valid_weth_versions()
+                    if max_valid_weth_version is None or max_valid_weth_version >= (8, 0):
                         tl_method = "self.env._"
                     self.add_message(
                         "translation-required", node=node, args=("message_post", keyword, tl_method, as_string)
@@ -1199,10 +1199,10 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                     self.add_message("bad-builtin-groupby", node=node)
         if (
             self.linter.is_message_enabled("no-search-all", node.lineno)
-            # only casthi valid structure class -> def -> search()
+            # only weth valid structure class -> def -> search()
             and isinstance(node.scope(), nodes.FunctionDef)
             and isinstance(node.scope().parent, nodes.ClassDef)
-            and self.get_casthi_models_class(node.scope().parent)
+            and self.get_weth_models_class(node.scope().parent)
             and self.get_func_name(node.func) in ("search", "search_read")
             and (node.args or node.keywords)
         ):
@@ -1279,7 +1279,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         "manifest-required-author",
         "manifest-required-key",
         "manifest-version-format",
-        "missing-casthi-file",
+        "missing-weth-file",
         "missing-readme",
         "resource-not-exist",
         "website-manifest-key-not-valid-uri",
@@ -1478,12 +1478,12 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                         ),
                     )
 
-            for subpath in self.linter.config.casthi_required_files:
+            for subpath in self.linter.config.weth_required_files:
                 required_path = os.path.join(dirname, subpath)
                 if not os.path.isfile(required_path):
                     required_relative_path = os.path.join(os.path.basename(dirname), subpath)
                     self.add_message(
-                        "missing-casthi-file",
+                        "missing-weth-file",
                         node=node,
                         args=(
                             required_relative_path,
@@ -1520,22 +1520,22 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                         if isinstance(entry, nodes.Const) and is_external_url(entry.value):
                             self.add_message("manifest-external-assets", node=element, args=(entry.value,))
 
-    def check_deprecated_casthi_method(self, node: NodeNG) -> bool:
-        """Verify the given method is not marked as deprecated under the set CasThi versions.
+    def check_deprecated_weth_method(self, node: NodeNG) -> bool:
+        """Verify the given method is not marked as deprecated under the set WETH versions.
         :param node: Function definition to be checked
         :return: True if the method is deprecated, false otherwise.
         """
         try:
-            if not self.get_casthi_models_class(node.parent):
+            if not self.get_weth_models_class(node.parent):
                 return False
         except AttributeError:
             return False
 
-        return node.name in self._deprecated_casthi_methods
+        return node.name in self._deprecated_weth_methods
 
     @utils.only_required_for_messages(
         "deprecated-name-get",
-        "deprecated-casthi-model-method",
+        "deprecated-weth-model-method",
         "method-required-super",
         "missing-return",
         "prohibited-method-override",
@@ -1548,9 +1548,9 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         if not node.is_method():
             return
 
-        if self.is_casthi_message_enabled("deprecated-casthi-model-method") and self.check_deprecated_casthi_method(node):
-            self.add_message("deprecated-casthi-model-method", node=node, args=(node.name,))
-        if self.is_casthi_message_enabled("deprecated-name-get") and node.name == "name_get":
+        if self.is_weth_message_enabled("deprecated-weth-model-method") and self.check_deprecated_weth_method(node):
+            self.add_message("deprecated-weth-model-method", node=node, args=(node.name,))
+        if self.is_weth_message_enabled("deprecated-name-get") and node.name == "name_get":
             self.add_message("deprecated-name-get", node=node)
         if node.name in self.linter.config.method_required_super:
             calls = [
@@ -1592,28 +1592,28 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
     @utils.only_required_for_messages(
         "context-overridden",
         "external-request-timeout",
-        "casthi-addons-relative-import",
+        "weth-addons-relative-import",
         "test-folder-imported",
     )
     def visit_import(self, node):
         self._from_imports.update({alias or name: "%s" % name for name, alias in node.names})
-        self.check_casthi_relative_import(node)
+        self.check_weth_relative_import(node)
         self.check_folder_test_imported(node)
 
     @utils.only_required_for_messages(
         "context-overridden",
         "external-request-timeout",
-        "casthi-addons-relative-import",
-        "casthi-exception-warning",
+        "weth-addons-relative-import",
+        "weth-exception-warning",
         "test-folder-imported",
     )
     def visit_importfrom(self, node):
-        if node.modname == "casthi.exceptions":
+        if node.modname == "weth.exceptions":
             for import_name, _import_as_name in node.names:
                 if import_name == "Warning":
-                    self.add_message("casthi-exception-warning", node=node)
+                    self.add_message("weth-exception-warning", node=node)
         self._from_imports.update({alias or name: "%s.%s" % (node.modname, name) for name, alias in node.names})
-        self.check_casthi_relative_import(node)
+        self.check_weth_relative_import(node)
         self.check_folder_test_imported(node)
 
     @utils.only_required_for_messages(
@@ -1641,16 +1641,16 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             ):
                 return
             if node_left.name == "_name":
-                node.parent.casthi_attribute_name = node.value.value
+                node.parent.weth_attribute_name = node.value.value
                 return
-            casthi_class_name = getattr(node.parent, "casthi_attribute_name", None)
-            casthi_class_inherit = node.value.value
+            weth_class_name = getattr(node.parent, "weth_attribute_name", None)
+            weth_class_inherit = node.value.value
             # Used in no-wizard-in-models check
-            node.parent.casthi_attribute_inherit = casthi_class_inherit
+            node.parent.weth_attribute_inherit = weth_class_inherit
             if (
                 not self.linter.is_message_enabled("consider-merging-classes-inherited", node.lineno)
-                or casthi_class_name
-                and casthi_class_name != casthi_class_inherit
+                or weth_class_name
+                and weth_class_name != weth_class_inherit
             ):
                 # Skip _name='model.name' _inherit='other.model' because is valid
                 # Skip pylint magic disable comment for consider-merging-classes-inherited
@@ -1658,7 +1658,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             node_dirpath = os.path.dirname(node.root().file)
             manifest_path = misc.walk_up(node_dirpath, tuple(misc.MANIFEST_FILES), misc.top_path(node_dirpath))
             if manifest_path:
-                self._casthi_inherit_items[(manifest_path, casthi_class_inherit)].add(node)
+                self._weth_inherit_items[(manifest_path, weth_class_inherit)].add(node)
 
     @staticmethod
     def get_func_name(node):
@@ -1715,10 +1715,10 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             argument = argument.func.expr
         elif isinstance(argument, nodes.BinOp):
             argument = argument.left
-        if self._get_str_value(argument) is not None and func_name in self.linter.config.casthi_exceptions:
+        if self._get_str_value(argument) is not None and func_name in self.linter.config.weth_exceptions:
             tl_method = "_"
-            max_valid_casthi_version = self._get_max_valid_casthi_versions()
-            if max_valid_casthi_version is None or max_valid_casthi_version >= (8, 0):
+            max_valid_weth_version = self._get_max_valid_weth_versions()
+            if max_valid_weth_version is None or max_valid_weth_version >= (8, 0):
                 tl_method = "self.env._"
             self.add_message("translation-required", node=node, args=(func_name, "", tl_method, argument.as_string()))
 
@@ -1744,10 +1744,10 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         return cursor_name
 
     def formatversion(self, version_string):
-        valid_casthi_versions = self.linter.config.valid_casthi_versions
-        valid_casthi_versions = "|".join(map(re.escape, valid_casthi_versions))
+        valid_weth_versions = self.linter.config.valid_weth_versions
+        valid_weth_versions = "|".join(map(re.escape, valid_weth_versions))
         manifest_version_format = self.linter.config.manifest_version_format
-        manifest_version_format_parsed = manifest_version_format.format(valid_casthi_versions=valid_casthi_versions)
+        manifest_version_format_parsed = manifest_version_format.format(valid_weth_versions=valid_weth_versions)
         return re.match(manifest_version_format_parsed, version_string), manifest_version_format_parsed
 
     def join_node_args_kwargs(self, node):
@@ -1827,7 +1827,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             if not handler.name and len(handler.body) == 1 and isinstance(handler.body[0], nodes.node_classes.Pass):
                 self.add_message("except-pass", node=handler)
 
-    def _get_casthi_module_imported(self, node, manifest_path):
+    def _get_weth_module_imported(self, node, manifest_path):
         if hasattr(node.parent, "file"):
             relpath = os.path.relpath(node.parent.file, os.path.dirname(manifest_path))
             if os.path.dirname(relpath) == "tests":
@@ -1836,26 +1836,26 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                 # and in such a case your
                 # module and their external dependencies are installed.
                 return []
-        casthi_module = []
-        if isinstance(node, nodes.ImportFrom) and "casthi.addons" in node.modname:
+        weth_module = []
+        if isinstance(node, nodes.ImportFrom) and "weth.addons" in node.modname:
             packages = node.modname.split(".")
             if len(packages) >= 3:
-                # from casthi.addons.casthi_module import models
-                casthi_module.append(packages[2])
+                # from weth.addons.weth_module import models
+                weth_module.append(packages[2])
             else:
-                # from casthi.addons import casthi_module
-                casthi_module.append(node.names[0][0])
+                # from weth.addons import weth_module
+                weth_module.append(node.names[0][0])
         elif isinstance(node, nodes.Import):
             for name, _ in node.names:
-                if "casthi.addons" not in name and "casthi.addons" not in name:
+                if "weth.addons" not in name and "weth.addons" not in name:
                     continue
                 packages = name.split(".")
                 if len(packages) >= 3:
-                    # import casthi.addons.casthi_module
-                    casthi_module.append(packages[2])
-        return casthi_module
+                    # import weth.addons.weth_module
+                    weth_module.append(packages[2])
+        return weth_module
 
-    def check_casthi_relative_import(self, node):
+    def check_weth_relative_import(self, node):
         node_dirpath = os.path.dirname(node.root().file)
         if os.path.basename(os.path.dirname(node_dirpath)) == "migrations":
             return
@@ -1863,9 +1863,9 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         manifest_path = misc.walk_up(node_dirpath, tuple(misc.MANIFEST_FILES), misc.top_path(node_dirpath))
         if not manifest_path:
             return
-        casthi_module_name = os.path.basename(os.path.dirname(manifest_path))
-        if casthi_module_name in self._get_casthi_module_imported(node, manifest_path):
-            self.add_message("casthi-addons-relative-import", node=node, args=(casthi_module_name,))
+        weth_module_name = os.path.basename(os.path.dirname(manifest_path))
+        if weth_module_name in self._get_weth_module_imported(node, manifest_path):
+            self.add_message("weth-addons-relative-import", node=node, args=(weth_module_name,))
 
     def check_folder_test_imported(self, node):
         if hasattr(node.parent, "file") and os.path.basename(node.parent.file) == "__init__.py":
@@ -1937,7 +1937,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
             return new_node, new_libname
         return self._get_root_method_assignation(new_node, new_libname)
 
-    def get_casthi_models_class(self, node):
+    def get_weth_models_class(self, node):
         for class_base in node.bases:
             attr = class_base
             while True:
@@ -1956,7 +1956,7 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
                 package_names = imported_class.modname.split(".")[:1]
             elif isinstance(imported_class, nodes.Import):
                 package_names = [name[0].split(".")[0] for name in imported_class.names]
-            if "casthi" in package_names:
+            if "weth" in package_names:
                 class_base_name = class_base.as_string().split(".")[-1]
                 if class_base_name in ["Model", "AbstractModel", "TransientModel"]:
                     return (class_base_name, class_base)
@@ -1966,23 +1966,23 @@ class CasThiAddons(CasThiBaseChecker, BaseChecker):
         "no-write-in-compute",
     )
     def visit_classdef(self, node):
-        self.class_casthi_models = self.get_casthi_models_class(node)
-        self.casthi_computes = set()
+        self.class_weth_models = self.get_weth_models_class(node)
+        self.weth_computes = set()
 
     @utils.only_required_for_messages(
         "no-wizard-in-models",
         "no-write-in-compute",
     )
     def leave_classdef(self, node):
-        if self.class_casthi_models:
-            for casthi_compute in self.casthi_computes:
-                self.check_no_write_compute(node, casthi_compute)
+        if self.class_weth_models:
+            for weth_compute in self.weth_computes:
+                self.check_no_write_compute(node, weth_compute)
             if (
-                self.linter.is_message_enabled("no-wizard-in-models", self.class_casthi_models[1].lineno)
-                and self.class_casthi_models[0] == "TransientModel"
+                self.linter.is_message_enabled("no-wizard-in-models", self.class_weth_models[1].lineno)
+                and self.class_weth_models[0] == "TransientModel"
                 and os.path.basename(os.path.dirname(node.root().file)).startswith("model")
-                and not getattr(node, "casthi_attribute_inherit", "").startswith("res.config")
+                and not getattr(node, "weth_attribute_inherit", "").startswith("res.config")
             ):
-                self.add_message("no-wizard-in-models", node=self.class_casthi_models[1])
-        self.casthi_computes = set()
-        self.class_casthi_models = False
+                self.add_message("no-wizard-in-models", node=self.class_weth_models[1])
+        self.weth_computes = set()
+        self.class_weth_models = False

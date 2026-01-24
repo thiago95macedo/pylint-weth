@@ -1,6 +1,6 @@
 [MASTER]
-# Carregar plugin pylint-casthi
-load-plugins=pylint_casthi
+# Carregar plugin pylint-weth
+load-plugins=pylint_weth
 
 # Desabilitar score (não mostrar pontuação)
 score=n
@@ -17,8 +17,8 @@ persistent=yes
 suggestion-mode=yes
 
 [MESSAGES CONTROL]
-# Habilitar verificações CasThi e algumas básicas importantes
-enable=casthilint,
+# Habilitar verificações WETH e algumas básicas importantes
+enable=wethlint,
         missing-module-docstring,
         missing-class-docstring,
         missing-function-docstring,

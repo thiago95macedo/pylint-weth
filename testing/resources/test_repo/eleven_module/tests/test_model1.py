@@ -1,6 +1,6 @@
 
-from casthi.tests.common import TransactionCase
-from casthi.addons.eleven_module.models import EleveModel
+from weth.tests.common import TransactionCase
+from weth.addons.eleven_module.models import EleveModel
 from .no_exists import package
 
 # Even though astroid is not set as an external dependency, it should not fail,

@@ -13,15 +13,20 @@ README_FILES = ["README.rst", "README.md", "README.txt"]
 
 MANIFEST_FILES = [
     "__manifest__.py",
-    "__casthi__.py",
+    "__weth__.py",
     "__openerp__.py",
     "__terp__.py",
 ]
 DFTL_README_TMPL_URL = "https://github.com/OCA/maintainer-tools/blob/master/template/module/README.rst"
 DFTL_VALID_CASTHI_VERSIONS = [
+    "8.0",
+    "10.0",
+    "11.0",
+    "12.0",
     "16.0",
+    "2026.0",
 ]
-DFTL_MANIFEST_VERSION_FORMAT = r"16\.0\.\d+\.\d+\.\d+$"
+DFTL_MANIFEST_VERSION_FORMAT = r"({valid_weth_versions})\.\d+\.\d+\.\d+$"
 TRANSLATION_METHODS = ("_", "_lt")
 EMAIL_RE = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
@@ -46,7 +51,7 @@ def get_plugin_msgs(pylint_run_res):
     all_plugin_msgs = []
     for key, message in pylint_run_res.linter.msgs_store._messages_definitions.items():
         checker_name = message.msgid
-        if checker_name == "casthilint":
+        if checker_name == "wethlint":
             all_plugin_msgs.append(key)
     return all_plugin_msgs
 
@@ -55,7 +60,7 @@ def get_plugin_msgs(pylint_run_res):
 def chdir(directory):
     """Change the current directory similar to command 'cd directory'
     but remembering the previous value to be revert at final
-    Similar to run 'original_dir=$(pwd) && cd casthi && cd ${original_dir}'
+    Similar to run 'original_dir=$(pwd) && cd weth && cd ${original_dir}'
     """
     original_dir = os.getcwd()
     os.chdir(directory)

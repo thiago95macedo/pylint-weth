@@ -2,7 +2,7 @@
 {
     'name': 'Empty module for tests',
     'license': 'AGPL-3',
-    'author': u'Moisés, CasThi Community Association (OCA), author2',
+    'author': u'Moisés, WETH Community Association (OCA), author2',
     'version': '10.0.1.0.0',
     'depends': [
         'base',

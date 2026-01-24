@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<casthi>
+<weth>
 
     <!-- Deprecated QWeb directive "t-esc-options". -->
     <template id="test_template_1" name="Test Template 1">
@@ -17,12 +17,12 @@
 
     <template id="assets_backend" name="test_module_widget" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
-            <!-- Wrong but is working in casthi web debug mode -->
+            <!-- Wrong but is working in weth web debug mode -->
             <link rel="stylesheet" href="/test_module_widget/static/widget.css?v=1"/>
 
             <script type="text/javascript" src="/test_module_affiliation_widget/static/widget.js?v=1"/>
 
-            <!-- Correct but is working working casthi web debug mode also -->
+            <!-- Correct but is working working weth web debug mode also -->
             <link rel="stylesheet" href="/test_module_widget/static/widget.css"/>
 
             <script type="text/javascript" src="/test_module_affiliation_widget/static/widget.js"/>
@@ -32,4 +32,4 @@
         </xpath>
     </template>
 
-</casthi>
+</weth>

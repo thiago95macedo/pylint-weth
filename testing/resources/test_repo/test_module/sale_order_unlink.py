@@ -1,5 +1,5 @@
 import platform
-from casthi.models import Model
+from weth.models import Model
 
 if platform.system() == 'Windows':
     raise OSError

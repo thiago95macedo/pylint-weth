@@ -15,7 +15,7 @@ from pylint.reporters.text import TextReporter
 from pylint.testutils._run import _Run as Run
 from pylint.testutils.utils import _patch_streams
 
-from pylint_casthi import __version__ as version, plugin
+from pylint_weth import __version__ as version, plugin
 
 RE_CHECK_OUTPUT = re.compile(r"\- \[(?P<check>[\w|-]+)\]")
 
@@ -27,7 +27,7 @@ EXPECTED_ERRORS = {
     "consider-merging-classes-inherited": 2,
     "context-overridden": 3,
     "deprecated-name-get": 1,
-    "deprecated-casthi-model-method": 2,
+    "deprecated-weth-model-method": 2,
     "development-status-allowed": 1,
     "except-pass": 3,
     "external-request-timeout": 51,
@@ -49,15 +49,15 @@ EXPECTED_ERRORS = {
     "method-inverse": 2,
     "method-required-super": 8,
     "method-search": 2,
-    "missing-casthi-file": 1,
+    "missing-weth-file": 1,
     "missing-readme": 1,
     "missing-return": 1,
     "no-raise-unlink": 2,
     "no-search-all": 12,
     "no-wizard-in-models": 1,
     "no-write-in-compute": 16,
-    "casthi-addons-relative-import": 4,
-    "casthi-exception-warning": 4,
+    "weth-addons-relative-import": 4,
+    "weth-exception-warning": 4,
     "prefer-env-translation": 112,
     "print-used": 1,
     "renamed-field-parameter": 2,
@@ -84,7 +84,7 @@ EXPECTED_ERRORS = {
 class MainTest(unittest.TestCase):
     def setUp(self):
         self.default_options = [
-            "--load-plugins=pylint_casthi",
+            "--load-plugins=pylint_weth",
             "--reports=no",
             "--score=no",
             "--msg-template={path}:{line} {msg} - [{symbol}]",
@@ -95,16 +95,16 @@ class MainTest(unittest.TestCase):
         )
         # Similar to pre-commit way
         self.paths_modules = glob(os.path.join(self.root_path_modules, "**", "*.py"), recursive=True)
-        self.casthi_namespace_addons_path = os.path.join(
+        self.weth_namespace_addons_path = os.path.join(
             os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
             "testing",
             "resources",
-            "test_repo_casthi_namespace",
-            "casthi",
+            "test_repo_weth_namespace",
+            "weth",
         )
         self.default_extra_params = [
             "--disable=all",
-            "--enable=casthilint,pointless-statement,trailing-newlines",
+            "--enable=wethlint,pointless-statement,trailing-newlines",
         ]
         self.sys_path_origin = list(sys.path)
         self.maxDiff = None
@@ -155,10 +155,10 @@ class MainTest(unittest.TestCase):
         real_errors = pylint_res.linter.stats.by_msg
         self.assertEqual(self.expected_errors, real_errors)
 
-    def test_25_checks_excluding_by_casthi_version(self):
-        """All casthilint errors vs found but excluding based on CasThi version"""
+    def test_25_checks_excluding_by_weth_version(self):
+        """All wethlint errors vs found but excluding based on WETH version"""
         # Com versão 15.0, apenas alguns checks de tradução devem ser executados
-        self.default_extra_params += ["--valid-casthi-versions=15.0"]
+        self.default_extra_params += ["--valid-weth-versions=15.0"]
         pylint_res = self.run_pylint(self.paths_modules)
         real_errors = pylint_res.linter.stats.by_msg
         expected_errors = {
@@ -172,9 +172,9 @@ class MainTest(unittest.TestCase):
         }
         self.assertEqual(expected_errors, real_errors)
 
-    def test_35_checks_emiting_by_casthi_version(self):
-        """All casthilint errors vs found but see if were not excluded for valid casthi version"""
-        self.default_extra_params += ["--valid-casthi-versions=16.0"]
+    def test_35_checks_emiting_by_weth_version(self):
+        """All wethlint errors vs found but see if were not excluded for valid weth version"""
+        self.default_extra_params += ["--valid-weth-versions=16.0"]
         pylint_res = self.run_pylint(self.paths_modules)
         real_errors = pylint_res.linter.stats.by_msg
         expected_errors = self.expected_errors.copy()
@@ -182,12 +182,12 @@ class MainTest(unittest.TestCase):
         # Com versão 16.0, todos os checks devem ser executados
         self.assertEqual(expected_errors, real_errors)
 
-    def test_85_valid_casthi_version_format(self):
+    def test_85_valid_weth_version_format(self):
         """Test --manifest-version-format parameter"""
         # Test for version 16.0
         extra_params = [
             r'--manifest-version-format="16\.0\.\d+\.\d+.\d+$"',
-            "--valid-casthi-versions=16.0",
+            "--valid-weth-versions=16.0",
             "--disable=all",
             "--enable=manifest-version-format",
         ]
@@ -198,11 +198,11 @@ class MainTest(unittest.TestCase):
         }
         self.assertDictEqual(real_errors, expected_errors)
 
-    def test_90_valid_casthi_versions(self):
-        """Test --valid-casthi-versions parameter for version 16.0"""
+    def test_90_valid_weth_versions(self):
+        """Test --valid-weth-versions parameter for version 16.0"""
         # Test for version 16.0
         extra_params = [
-            "--valid-casthi-versions=16.0",
+            "--valid-weth-versions=16.0",
             "--disable=all",
             "--enable=manifest-version-format",
         ]
@@ -238,7 +238,7 @@ class MainTest(unittest.TestCase):
         self.assertDictEqual(real_errors, expected_errors)
 
         # Testing deprecated attribute
-        extra_params[0] = "--manifest-required-author=CasThi Community Association (OCA)"
+        extra_params[0] = "--manifest-required-author=WETH Community Association (OCA)"
         pylint_res = self.run_pylint(self.paths_modules, extra_params)
         real_errors = pylint_res.linter.stats.by_msg
         expected_errors_deprecated = {
@@ -274,7 +274,7 @@ class MainTest(unittest.TestCase):
         self.assertDictEqual(real_errors, expected_errors)
 
         # Messages raised without plugin
-        self.default_options.remove("--load-plugins=pylint_casthi")
+        self.default_options.remove("--load-plugins=pylint_weth")
         pylint_res = self.run_pylint(path_modules, extra_params)
         real_errors = pylint_res.linter.stats.by_msg
         expected_errors = {
@@ -283,9 +283,9 @@ class MainTest(unittest.TestCase):
         }
         self.assertDictEqual(real_errors, expected_errors)
 
-    def test_140_check_migrations_is_not_casthi_module(self):
-        """Checking that migrations folder is not considered a casthi module
-        Related to https://github.com/OCA/pylint-casthi/issues/357"""
+    def test_140_check_migrations_is_not_weth_module(self):
+        """Checking that migrations folder is not considered a weth module
+        Related to https://github.com/OCA/pylint-weth/issues/357"""
         extra_params = [
             "--disable=all",
             "--enable=missing-readme",
@@ -307,9 +307,9 @@ class MainTest(unittest.TestCase):
         self.assertDictEqual(real_errors, expected_errors)
 
     def test_gettext_env(self):
-        """prefer-env-translation is valid for casthi v16.0+"""
+        """prefer-env-translation is valid for weth v16.0+"""
         pylint_res = self.run_pylint(
-            self.paths_modules, ["--valid-casthi-versions=16.0", "--disable=all", "--enable=prefer-env-translation"]
+            self.paths_modules, ["--valid-weth-versions=16.0", "--disable=all", "--enable=prefer-env-translation"]
         )
         real_errors = pylint_res.linter.stats.by_msg
         expected_errors = {"prefer-env-translation": self.expected_errors.get("prefer-env-translation")}
@@ -318,7 +318,7 @@ class MainTest(unittest.TestCase):
     def test_145_check_fstring_sqli(self):
         """Verify the linter is capable of finding SQL Injection vulnerabilities
         when using fstrings.
-        Related to https://github.com/OCA/pylint-casthi/issues/363"""
+        Related to https://github.com/OCA/pylint-weth/issues/363"""
         extra_params = ["--disable=all", "--enable=sql-injection"]
         queries = """
 def fstring_sqli(self):
@@ -355,7 +355,7 @@ def fstring_no_sqli(self):
             self.assertDictEqual(real_errors, expected_errors)
 
     def test_160_check_only_disabled_one_check(self):
-        """Checking -d all -e casthilint -d ONLY-ONE-CHECK"""
+        """Checking -d all -e wethlint -d ONLY-ONE-CHECK"""
         for disable_error in EXPECTED_ERRORS:
             expected_errors = self.expected_errors.copy()
             enable = "--disable=%s" % disable_error
@@ -373,8 +373,8 @@ def fstring_no_sqli(self):
             {"no-raise-unlink": 2},
         )
 
-        # This check is only valid for CasThi 15.0 and upwards
-        extra_params.append("--valid-casthi-versions=14.0")
+        # This check is only valid for WETH 15.0 and upwards
+        extra_params.append("--valid-weth-versions=14.0")
         self.assertFalse(self.run_pylint([test_repo], extra_params).linter.stats.by_msg)
 
     # Test category-allowed with and without error
@@ -395,17 +395,17 @@ def fstring_no_sqli(self):
         real_errors = pylint_res.linter.stats.by_msg
         self.assertDictEqual(real_errors, expected_errors)
 
-    def test_option_casthi_deprecated_model_method(self):
+    def test_option_weth_deprecated_model_method(self):
         pylint_res = self.run_pylint(
             self.paths_modules,
             rcfile=os.path.abspath(
-                os.path.join(__file__, "..", "..", "testing", "resources", ".pylintrc-casthi-deprecated-model-methods")
+                os.path.join(__file__, "..", "..", "testing", "resources", ".pylintrc-weth-deprecated-model-methods")
             ),
         )
 
         self.assertEqual(
             4,
-            pylint_res.linter.stats.by_msg["deprecated-casthi-model-method"],
+            pylint_res.linter.stats.by_msg["deprecated-weth-model-method"],
         )
 
     def test_175_prohibited_method_override(self):
@@ -437,9 +437,9 @@ def fstring_no_sqli(self):
                 self.assertLessEqual(count, 2, "%s duplicated more than 2 times. Line %s" % (key, line))
 
     def test_format_version_value_error(self):
-        """Test --valid-casthi-versions to force a value error exception"""
+        """Test --valid-weth-versions to force a value error exception"""
         extra_params = [
-            "--valid-casthi-versions=8.0saas",
+            "--valid-weth-versions=8.0saas",
             "--disable=all",
             "--enable=manifest-version-format",
         ]
@@ -531,7 +531,7 @@ def fstring_no_sqli(self):
             check_example_content += f"\n\n * {check_error}\n"
             for msg in sorted(msgs)[:2]:  # Limit to 2 examples per check
                 msg = msg.replace(":", "#L", 1)
-                check_example_content += f"\n    - https://github.com/thiago95macedo/pylint-casthi/blob/main/{msg}"
+                check_example_content += f"\n    - https://github.com/thiago95macedo/pylint-weth/blob/main/{msg}"
             count += 1
         
         self.assertGreater(len(check_example_content), 0)

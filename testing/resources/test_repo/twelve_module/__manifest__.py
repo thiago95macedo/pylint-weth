@@ -1,7 +1,7 @@
 {
     'name': 'Twelve module for tests',
     'license': 'AGPL-3',
-    'author': u'Jesus, CasThi Community Association (OCA)',
+    'author': u'Jesus, WETH Community Association (OCA)',
     'version': '12.0.1.0.0',
     'depends': [
         'base',

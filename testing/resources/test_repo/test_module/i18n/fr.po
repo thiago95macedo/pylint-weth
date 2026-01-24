@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: CasThi Server\n"
+"Project-Id-Version: WETH Server\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 1985-04-14 17:12+0000\n"
 "PO-Revision-Date: 1985-04-14 02:03+0000\n"

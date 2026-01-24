@@ -1,4 +1,4 @@
-from casthi.tests.common import TransactionCase
+from weth.tests.common import TransactionCase
 
 
 class TestModel(TransactionCase):

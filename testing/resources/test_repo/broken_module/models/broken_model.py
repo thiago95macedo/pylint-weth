@@ -41,29 +41,29 @@ import ftplib as ftplib_r
 from ftplib import FTP
 from ftplib import FTP as ftp_r
 
-import casthi
+import weth
 
-from casthi import fields, models, _
-from casthi.exceptions import UserError
-from casthi import exceptions
-from casthi import tools
-from casthi.tools import clean_context
-from casthi.tools import clean_context as clean_context2
-from casthi.tools.translate import LazyTranslate
+from weth import fields, models, _
+from weth.exceptions import UserError
+from weth import exceptions
+from weth import tools
+from weth.tools import clean_context
+from weth.tools import clean_context as clean_context2
+from weth.tools.translate import LazyTranslate
 
 
-# Relatives import for casthi addons
-from casthi.addons.broken_module import broken_model as broken_model1
-from casthi.addons import broken_module as broken_module1
-import casthi.addons.broken_module as broken_module2
-import casthi.addons.broken_module.broken_model as broken_model2
+# Relatives import for weth addons
+from weth.addons.broken_module import broken_model as broken_model1
+from weth.addons import broken_module as broken_module1
+import weth.addons.broken_module as broken_module2
+import weth.addons.broken_module.broken_model as broken_model2
 
-import casthi.addons.iap.models.iap.jsonrpc
-from casthi.addons.iap.models.iap import jsonrpc
-from casthi.addons.iap.models import iap
+import weth.addons.iap.models.iap.jsonrpc
+from weth.addons.iap.models.iap import jsonrpc
+from weth.addons.iap.models import iap
 
-import casthi.models
-from casthi import tools
+import weth.models
+from weth import tools
 
 import itertools
 from itertools import groupby
@@ -81,7 +81,7 @@ def function_no_method():
 def fields_view_get():
     return "Not part of a model, i'm free"
 
-class TestModel2(casthi.models.Model):
+class TestModel2(weth.models.Model):
     def _compute_name2(self):
         # Compute called from string with write defined before
         self.write({"name": "hello"})
@@ -184,7 +184,7 @@ class TestModel2(casthi.models.Model):
     domain6 = fields.Many2one("res.partner", domain=DOMAIN_GOOD)  # good domain
 
     def fields_view_get(self):
-        return "Deprecated in CasThi 16.0!!!"
+        return "Deprecated in WETH 16.0!!!"
 
     def custom_deprecated_method_just_because(self):
         return "this method is deprecated because i said so in the options" + self.name2
@@ -314,7 +314,7 @@ class TestModel(models.Model):
         self.with_context(overwrite_context=False).write({})
         self.with_context(clean_context(self.env.context))  # Valid case
         self.with_context(tools.clean_context(self.env.context))  # Valid case
-        self.with_context(casthi.tools.clean_context(self.env.context))  # Valid case
+        self.with_context(weth.tools.clean_context(self.env.context))  # Valid case
         self.with_context(clean_context2(self.env.context))  # Valid case
         return date
 
@@ -1115,13 +1115,13 @@ class TestModel(models.Model):
         Serial('/dev/ttyS1', timeout=10)
         Serial_r('/dev/ttyS1', timeout=10)
 
-        # casthi.addons.iap without timeout
-        casthi.addons.iap.models.iap.jsonrpc('http://localhost')
+        # weth.addons.iap without timeout
+        weth.addons.iap.models.iap.jsonrpc('http://localhost')
         jsonrpc('http://localhost')
         iap.jsonrpc('http://localhost')
 
-        # casthi.addons.iap valid cases
-        casthi.addons.iap.models.iap.jsonrpc('http://localhost', timeout=10)
+        # weth.addons.iap valid cases
+        weth.addons.iap.models.iap.jsonrpc('http://localhost', timeout=10)
         jsonrpc('http://localhost', timeout=10)
         iap.jsonrpc('http://localhost', timeout=10)
 
@@ -1139,24 +1139,24 @@ class TestModel(models.Model):
 
 
 class TestModel3(
-    casthi.models.TransientModel):
+    weth.models.TransientModel):
     # no-wizard-in-model
     pass
 
 
 class TestModel4(
-    casthi.models.TransientModel):
+    weth.models.TransientModel):
     # Valid no-wizard-in-model
     _inherit = "res.config.settings"
 
 
 class TestModel5(
-    casthi.models.TransientModel):  # pylint: disable=no-wizard-in-models
+    weth.models.TransientModel):  # pylint: disable=no-wizard-in-models
     # Valid no-wizard-in-model
     _inherit = "my.transient.model"
 
 
-class NoCasThi(object):
+class NoWETH(object):
     length = 0
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<casthi>
+<weth>
     <report
         id="report_include"
         model="test.model"
@@ -7,4 +7,4 @@
         string="Report"
         xml="broken_module/report/test_report.xml"
         />
-</casthi>
+</weth>

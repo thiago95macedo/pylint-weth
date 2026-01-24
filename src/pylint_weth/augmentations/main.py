@@ -27,7 +27,7 @@ def is_migration_path(node):
     e.g. "cr" for cursor
 
     - unused-argument (W0613) for argument
-    e.g. "version" for version of CasThi
+    e.g. "version" for version of WETH
 
     node: can be module or functiondef
     """

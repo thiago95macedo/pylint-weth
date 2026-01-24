@@ -2,7 +2,7 @@ import tokenize
 
 from pylint.checkers import BaseTokenChecker
 
-from .casthi_base_checker import CasThiBaseChecker
+from .weth_base_checker import WETHBaseChecker
 
 CASTHI_MSGS = {
     # C->convention R->refactor W->warning E->error F->fatal
@@ -10,8 +10,8 @@ CASTHI_MSGS = {
 }
 
 
-class VimComment(CasThiBaseChecker, BaseTokenChecker):
-    name = "casthilint"
+class VimComment(WETHBaseChecker, BaseTokenChecker):
+    name = "wethlint"
     msgs = CASTHI_MSGS
 
     def is_vim_comment(self, comment):

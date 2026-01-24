@@ -2,9 +2,9 @@
 {
     'name': 'Broken module 3 for tests',
     'license': 'AGPL-3',
-    'author': ['Other', 'CasThi Community Association (OCA)'],  # expected string
+    'author': ['Other', 'WETH Community Association (OCA)'],  # expected string
     'maintainers': 'Others, Many people',  # expected a list of strings
-    'website': 'htt://casthi-community.com',
+    'website': 'htt://weth-community.com',
     'version': '8.0.1.0.0foo',
     'depends': ['base'],
     'data': [],

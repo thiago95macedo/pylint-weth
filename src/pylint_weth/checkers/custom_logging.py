@@ -7,8 +7,8 @@ from astroid import builder, exceptions as astroid_exceptions, nodes
 from pylint.checkers import logging
 
 from .. import misc
-from .casthi_addons import CasThiAddons
-from .casthi_base_checker import CasThiBaseChecker
+from .weth_addons import WETHAddons
+from .weth_base_checker import WETHBaseChecker
 
 
 @contextmanager
@@ -33,7 +33,7 @@ def transform_msgs(msgs):
         msg_short, msg_code, msg_desc = msgattrs[:3]
         if "logging" not in msg_code.lower():  # pragma: no cover
             continue
-        msg_short = msg_short.replace("logging", "casthi._")
+        msg_short = msg_short.replace("logging", "weth._")
         msgid = re.sub("12", BASE_CHECKS_ID, msgid, count=1)
         msg_code = msg_code.replace("logging", "translation")
         new_msgs[msgid] = (msg_short, msg_code, msg_desc) + msgattrs[3:]
@@ -45,20 +45,20 @@ BASE_CHECKS_ID = "83"
 CASTHI_MSGS = transform_msgs(logging.MSGS)
 
 
-class CustomLoggingChecker(CasThiBaseChecker, logging.LoggingChecker):
-    name = "casthilint"
+class CustomLoggingChecker(WETHBaseChecker, logging.LoggingChecker):
+    name = "wethlint"
     msgs = CASTHI_MSGS
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for msg_attrs in self.msgs.values():
-            # checks_maxmin_casthi_version = {
+            # checks_maxmin_weth_version = {
             #   check-code: {
-            #       "casthi_minversion": tuple(int, int),
-            #       "casthi_maxversion": tuple(int, int),
+            #       "weth_minversion": tuple(int, int),
+            #       "weth_maxversion": tuple(int, int),
             #   }
-            self.checks_maxmin_casthi_version[msg_attrs[1]] = {
-                "casthi_minversion": "14.0",
+            self.checks_maxmin_weth_version[msg_attrs[1]] = {
+                "weth_minversion": "14.0",
             }
 
     def add_message(self, msgid, *args, **kwargs):
@@ -69,13 +69,13 @@ class CustomLoggingChecker(CasThiBaseChecker, logging.LoggingChecker):
         return super().add_message(msgid, *args, **kwargs)
 
     def visit_call(self, node):
-        name = CasThiAddons.get_func_name(node.func)
+        name = WETHAddons.get_func_name(node.func)
         if name == "format" and (new_node := self.transform_formatcall2tlcall(node)):
             node = new_node
-            name = CasThiAddons.get_func_name(node.func)
+            name = WETHAddons.get_func_name(node.func)
         if name not in misc.TRANSLATION_METHODS:
             return
-        with config_logging_modules(self.linter, ("casthi",)):
+        with config_logging_modules(self.linter, ("weth",)):
             self._check_log_method(node, name)
 
     def transform_formatcall2tlcall(self, node):
@@ -128,7 +128,7 @@ class CustomLoggingChecker(CasThiBaseChecker, logging.LoggingChecker):
         return new_node
 
     def visit_binop(self, node):
-        if not isinstance(node.left, nodes.Call) or node.op != "%" or CasThiAddons.get_func_name(node.left.func) != "_":
+        if not isinstance(node.left, nodes.Call) or node.op != "%" or WETHAddons.get_func_name(node.left.func) != "_":
             return
         new_node = self.transform_binop2call(node)
         if new_node:

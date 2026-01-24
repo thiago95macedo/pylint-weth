@@ -4,7 +4,7 @@ from .augmentations.main import apply_augmentations
 
 def register(linter):
     """Required method to auto register this checker"""
-    linter.register_checker(checkers.casthi_addons.CasThiAddons(linter))
+    linter.register_checker(checkers.weth_addons.WETHAddons(linter))
     linter.register_checker(checkers.vim_comment.VimComment(linter))
     linter.register_checker(checkers.custom_logging.CustomLoggingChecker(linter))
 
@@ -15,7 +15,7 @@ def register(linter):
 def get_all_messages():
     """Get all messages of this plugin"""
     all_msgs = {}
-    all_msgs.update(checkers.casthi_addons.CASTHI_MSGS)
+    all_msgs.update(checkers.weth_addons.CASTHI_MSGS)
     all_msgs.update(checkers.vim_comment.CASTHI_MSGS)
     all_msgs.update(checkers.custom_logging.CASTHI_MSGS)
     return all_msgs

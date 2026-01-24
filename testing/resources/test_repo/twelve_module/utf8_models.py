@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from casthi import models
+from weth import models
 
 
 class TwelveModel(models.Model):

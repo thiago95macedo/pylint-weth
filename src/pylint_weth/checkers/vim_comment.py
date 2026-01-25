@@ -4,7 +4,7 @@ from pylint.checkers import BaseTokenChecker
 
 from .weth_base_checker import WETHBaseChecker
 
-CASTHI_MSGS = {
+WETH_MSGS = {
     # C->convention R->refactor W->warning E->error F->fatal
     "W8202": ("Use of vim comment", "use-vim-comment", "Better using local vim configuration file"),
 }
@@ -12,7 +12,7 @@ CASTHI_MSGS = {
 
 class VimComment(WETHBaseChecker, BaseTokenChecker):
     name = "wethlint"
-    msgs = CASTHI_MSGS
+    msgs = WETH_MSGS
 
     def is_vim_comment(self, comment):
         return comment.strip("# ").lower().startswith("vim:")

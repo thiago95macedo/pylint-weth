@@ -18,7 +18,7 @@ MANIFEST_FILES = [
     "__terp__.py",
 ]
 DFTL_README_TMPL_URL = "https://github.com/OCA/maintainer-tools/blob/master/template/module/README.rst"
-DFTL_VALID_CASTHI_VERSIONS = [
+DFTL_VALID_WETH_VERSIONS = [
     "8.0",
     "10.0",
     "11.0",

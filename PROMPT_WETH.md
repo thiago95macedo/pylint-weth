@@ -67,7 +67,7 @@ pylint --rcfile=.pylintrc addons/module_name/
 }
 ```
 
-## 🎯 PRINCIPAIS VERIFICAÇÕES CASTHI
+## 🎯 PRINCIPAIS VERIFICAÇÕES WETH
 
 ### 🔒 Segurança
 - **SQL Injection**: Detecta vulnerabilidades de injeção SQL

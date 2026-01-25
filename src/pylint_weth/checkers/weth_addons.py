@@ -119,7 +119,7 @@ CHECK_DESCRIPTION = (
     "Contribution/CONTRIBUTING.rst"
 )
 
-CASTHI_MSGS = {
+WETH_MSGS = {
     # C->convention R->refactor W->warning E->error F->fatal
     "C8101": (
         "One of the following authors must be present in manifest: %s",
@@ -320,7 +320,7 @@ CASTHI_MSGS = {
 
 DFTL_MANIFEST_REQUIRED_KEYS = ["license"]
 DFTL_MANIFEST_REQUIRED_KEYS_APP = ["currency", "images", "license", "support"]
-DFTL_CASTHI_REQUIRED_FILES_APP = [os.path.join("static", "description", "index.html")]
+DFTL_WETH_REQUIRED_FILES_APP = [os.path.join("static", "description", "index.html")]
 DFTL_MANIFEST_REQUIRED_AUTHORS = ["WETH Community Association (OCA)"]
 DFTL_MANIFEST_DEPRECATED_KEYS = ["description"]
 DFTL_LICENSE_ALLOWED = [
@@ -386,7 +386,7 @@ DFTL_CURSOR_EXPR = [
     "self.cr",  # controllers and test
     "self.env.cr",
 ]
-DFTL_CASTHI_EXCEPTIONS = [
+DFTL_WETH_EXCEPTIONS = [
     # Extracted from weth/exceptions.py of 16.0 and master
     "AccessDenied",
     "AccessError",
@@ -436,7 +436,7 @@ DFTL_EXTERNAL_REQUEST_TIMEOUT_METHODS = [
     "suds.client.Client",
     "urllib.request.urlopen",
 ]
-DFTL_DEPRECATED_CASTHI_MODEL_METHODS = {"16.0": {"fields_view_get"}}
+DFTL_DEPRECATED_WETH_MODEL_METHODS = {"16.0": {"fields_view_get"}}
 
 # Regex used from https://github.com/translate/translate/blob/9de0d72437/translate/filters/checks.py#L50-L62  # noqa
 PRINTF_PATTERN = re.compile(
@@ -460,7 +460,7 @@ PRINTF_PATTERN = re.compile(
 class WETHAddons(WETHBaseChecker, BaseChecker):
     _from_imports = None
     name = "wethlint"
-    msgs = CASTHI_MSGS
+    msgs = WETH_MSGS
     options = (
         (
             "attribute-deprecated",
@@ -604,7 +604,7 @@ class WETHAddons(WETHBaseChecker, BaseChecker):
             {
                 "type": "csv",
                 "metavar": "<comma separated values>",
-                "default": DFTL_CASTHI_EXCEPTIONS,
+                "default": DFTL_WETH_EXCEPTIONS,
                 "help": "List of weth exceptions separated by a comma.",
             },
         ),
@@ -613,7 +613,7 @@ class WETHAddons(WETHBaseChecker, BaseChecker):
             {
                 "type": "csv",
                 "metavar": "<comma separated values>",
-                "default": DFTL_CASTHI_REQUIRED_FILES_APP,
+                "default": DFTL_WETH_REQUIRED_FILES_APP,
                 "help": (
                     "List of mandatory relative paths (comma-separated) expected inside WETH module. "
                     "Example: static/description/index.html"
@@ -634,7 +634,7 @@ class WETHAddons(WETHBaseChecker, BaseChecker):
             {
                 "type": "csv",
                 "metavar": "<comma separated values>",
-                "default": misc.DFTL_VALID_CASTHI_VERSIONS,
+                "default": misc.DFTL_VALID_WETH_VERSIONS,
                 "help": "List of valid weth versions separated by a comma.",
             },
         ),
@@ -729,7 +729,7 @@ class WETHAddons(WETHBaseChecker, BaseChecker):
         if self.linter.config.deprecated_weth_model_methods:
             deprecated_model_methods = ast.literal_eval(self.linter.config.deprecated_weth_model_methods)
         else:
-            deprecated_model_methods = DFTL_DEPRECATED_CASTHI_MODEL_METHODS
+            deprecated_model_methods = DFTL_DEPRECATED_WETH_MODEL_METHODS
 
         max_valid_version = self._get_max_valid_weth_versions()
         if max_valid_version is None:

@@ -42,12 +42,12 @@ def transform_msgs(msgs):
 
 BASE_CHECKS_ID = "83"
 
-CASTHI_MSGS = transform_msgs(logging.MSGS)
+WETH_MSGS = transform_msgs(logging.MSGS)
 
 
 class CustomLoggingChecker(WETHBaseChecker, logging.LoggingChecker):
     name = "wethlint"
-    msgs = CASTHI_MSGS
+    msgs = WETH_MSGS
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

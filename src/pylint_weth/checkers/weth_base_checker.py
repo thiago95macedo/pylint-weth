@@ -42,8 +42,8 @@ class WETHBaseChecker(BaseChecker):
             )
             return True
         required_weth_versions = self.checks_maxmin_weth_version.get(msg_symbol) or {}
-        weth_minversion = required_weth_versions.get("weth_minversion") or misc.DFTL_VALID_CASTHI_VERSIONS[0]
-        weth_maxversion = required_weth_versions.get("weth_maxversion") or misc.DFTL_VALID_CASTHI_VERSIONS[-1]
+        weth_minversion = required_weth_versions.get("weth_minversion") or misc.DFTL_VALID_WETH_VERSIONS[0]
+        weth_maxversion = required_weth_versions.get("weth_maxversion") or misc.DFTL_VALID_WETH_VERSIONS[-1]
         return (
             misc.version_parse(weth_minversion)
             <= misc.version_parse(weth_version)

@@ -15,9 +15,9 @@ def register(linter):
 def get_all_messages():
     """Get all messages of this plugin"""
     all_msgs = {}
-    all_msgs.update(checkers.weth_addons.CASTHI_MSGS)
-    all_msgs.update(checkers.vim_comment.CASTHI_MSGS)
-    all_msgs.update(checkers.custom_logging.CASTHI_MSGS)
+    all_msgs.update(checkers.weth_addons.WETH_MSGS)
+    all_msgs.update(checkers.vim_comment.WETH_MSGS)
+    all_msgs.update(checkers.custom_logging.WETH_MSGS)
     return all_msgs
 
 
